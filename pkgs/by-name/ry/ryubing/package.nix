@@ -32,14 +32,14 @@
 
 buildDotnetModule rec {
   pname = "ryubing";
-  version = "1.3.3";
+  version = "1.3.338-canary";
 
   src = fetchFromForgejo {
     domain = "git.ryujinx.app";
     owner = "projects";
     repo = "Ryubing";
-    tag = version;
-    hash = "sha256-LhQaXxmj5HIgfmrsDN8GhhVXlXHpDO2Q8JtNLaCq0mk=";
+    tag = "Canary-1.3.338";
+    hash = "sha256-PrfT+5BKYIe4+3xRkQtIBloF4r20jXdepBJlyNqJS9I=";
   };
 
   nativeBuildInputs =
@@ -51,8 +51,8 @@ buildDotnetModule rec {
 
   enableParallelBuilding = false;
 
-  dotnet-sdk = dotnetCorePackages.sdk_9_0;
-  dotnet-runtime = dotnetCorePackages.runtime_9_0;
+  dotnet-sdk = dotnetCorePackages.sdk_10_0;
+  dotnet-runtime = dotnetCorePackages.runtime_10_0;
 
   nugetDeps = ./deps.json;
 
@@ -117,10 +117,10 @@ buildDotnetModule rec {
 
       pushd ${src}/distribution/linux
 
-      install -D ./Ryujinx.desktop  $out/share/applications/Ryujinx.desktop
-      install -D ./Ryujinx.sh       $out/bin/Ryujinx.sh
-      install -D ./mime/Ryujinx.xml $out/share/mime/packages/Ryujinx.xml
-      install -D ../misc/Logo.svg   $out/share/icons/hicolor/scalable/apps/Ryujinx.svg
+      install -D ./app.ryujinx.Ryujinx.desktop $out/share/applications/Ryujinx.desktop
+      install -D ./Ryujinx.sh                  $out/bin/Ryujinx.sh
+      install -D ./mime/Ryujinx.xml            $out/share/mime/packages/Ryujinx.xml
+      install -D ../misc/Logo.png              $out/share/icons/hicolor/scalable/apps/Ryujinx.png
 
       popd
     ''}
